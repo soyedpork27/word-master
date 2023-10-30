@@ -1,0 +1,55 @@
+
+
+.home-main{
+  display : flex;
+  width : calc(100% - 20px);
+  margin : 10px;
+  box-sizing: border-box;
+  gap : 10px;
+  flex-wrap : wrap;
+  height : auto;
+}
+
+.home-card {
+  width : calc((100% - 20px) / 3);
+  /* aspect-ratio : 1 / 1.6; */
+  padding : 8px;
+  box-sizing: border-box;
+  background-color : rgba(255,255,255,.3);
+  border-radius : 8px;
+}
+
+.home-card h2 {
+  text-align : center;
+  font-size : 20px;
+  margin-bottom : 16px;
+}
+
+.home-card p {
+  text-align : center;
+  margin-bottom : 10px;
+}
+
+.home-progress_bar{
+  width : 95%;
+  background-color: #fff;
+  height : 6px;
+  margin : 0 auto;
+  border-radius: 4px;
+  margin-top : 36px;
+}
+
+.progress{
+  height: 6px;
+  background-color : #f00;
+  border-radius: 4px;
+  position : relative;
+}
+
+.progress_img{
+  /* width : 32px; */
+  position : absolute;
+  left : 100%;
+  transform : translateX(-50%);
+  bottom : 100%;
+}

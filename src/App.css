@@ -1,9 +1,32 @@
+
+@font-face {
+  font-family: 'BMJUA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*, a {
+  font-family: 'BMJUA';
+}
+
+
+
 .App-bg{
   width : 100%;
   height : calc(100% - 50px);
-  background-color: rgb(255, 173, 173);
+  height : calc(100%);
+  background-color: #FFCED2;
   position : fixed;
   left : 0;
-  top : 50px;
+  top : 0;
   z-index : -9999;
+}
+
+.App-bg img{
+  width : 50%;
+  position : absolute;
+  top : calc(30% + 50px);
+  left : 50%;
+  transform : translateX(-50%);
 }

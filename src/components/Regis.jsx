@@ -29,7 +29,7 @@ function Regis({words, handleWords}) {
 
   let [part, setPart] = useState(words[id-1]["list"][idx-1]["part"]);
 
-  console.log(part);
+  // console.log(part);
 
 
   // 단어 바꾸는 핸들러 함수
@@ -66,102 +66,121 @@ function Regis({words, handleWords}) {
         part : part,
         mean : mean,
         exam : exam,
-        examMean : examMean
+        examMean : examMean,
+        check : false
       }
 
     handleWords(id ,idx ,obj01);
 
-    // 해당 차시로 이동해야 한다.
-    navigate(`/main/${id}`);
+    console.log(idx);
+
+    // 해당 차시, 순서로 이동해야 한다.
+    navigate(`/main/${id}/${idx}`);
 
   }
 
   return (
     <main>
-      <div className='main-background'>
 
-        <section>
-          <h2>{id}차슈</h2>
-          <p>{idx}번째</p>
+      <div className='main-wrap regis'>
+        <div className='main-card regis'>
 
-          <form onSubmit={handleSubmit}>
-            <dl>
+            <div className='card-header regis'>
+              <h2>{id}-{idx}</h2>
+            </div>
 
-            {/* 카드 형식 단어와 뜻과 품사 */}
-              <dt>
-                단어 <input type='text' value={word} onChange={handleWord} />
-              </dt>
+            <form onSubmit={handleSubmit}>
+              <dl className='regis-word_wrap'>
 
-              <dd>
-                <p>품사</p>
-                  <ul className='part_box'>
-                    <li className='part_list'>
-                      <input type="radio" name="part" id="noun" value="n" className='part_radio' checked={part==="n"} onChange={handleRadio} /> <label htmlFor="noun">명사</label>
-                      <div className='checkd_bg'>
-                        <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
-                      </div>
-                    </li>
-                    <li className='part_list'>
-                      <input type="radio" name="part" id="verb" value="v" className='part_radio' checked={part==="v"} onChange={handleRadio} /> <label htmlFor="verb">자동사</label>
-                      <div className='checkd_bg'>
-                        <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
-                      </div>
-                    </li>
-                    <li className='part_list'>
-                      <input type="radio" name="part" id="verbt" value="vt" className='part_radio' checked={part==="vt"} onChange={handleRadio} /> <label htmlFor="verbt">타동사</label>
-                      <div className='checkd_bg'>
-                        <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
-                      </div>
-                    </li>
-                    <li className='part_list'>
-                      <input type="radio" name="part" id="adjective" value="a" className='part_radio' checked={part==="a"} onChange={handleRadio} /> <label htmlFor="adjective">형용사</label>
-                      <div className='checkd_bg'>
-                        <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
-                      </div>
-                    </li>
-                    <li className='part_list'>
-                      <input type="radio" name="part" id="adverb" value="ad" className='part_radio' checked={part==="ad"} onChange={handleRadio} /> <label htmlFor="adverb">부사</label>
-                      <div className='checkd_bg'>
-                        <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
-                      </div>
-                    </li>
-                    <li className='part_list'>
-                      <input type="radio" name="part" id="preposition" value="prep" className='part_radio' checked={part==="prep"} onChange={handleRadio} /> <label htmlFor="preposition">전치사</label>
-                      <div className='checkd_bg'>
-                        <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
-                      </div>
-                    </li>
-                  </ul>
-              </dd>
+              {/* 카드 형식 단어와 뜻과 품사 */}
+                <dt className='regis-word'>
+                  {/* <h3> */}
+                    <label htmlFor="regis-word">단어</label>
+                    <input type='text' value={word} onChange={handleWord} id='regis-word' />
+                  {/* </h3> */}
+                </dt>
 
-              <dd>
-                뜻 <input type="text" value={mean} onChange={handleMean} />
-              </dd>
+                <dd className='regis-part'>
+                  <p>품사</p>
+                    <ul className='part_box'>
+                      <li className='part_list'>
+                        <input type="radio" name="part" id="noun" value="n" className='part_radio' checked={part==="n"} onChange={handleRadio} /> <label htmlFor="noun">명사</label>
+                        <div className='checkd_bg'>
+                          <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
+                        </div>
+                      </li>
+                      <li className='part_list'>
+                        <input type="radio" name="part" id="verb" value="v" className='part_radio' checked={part==="v"} onChange={handleRadio} /> <label htmlFor="verb">자동사</label>
+                        <div className='checkd_bg'>
+                          <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
+                        </div>
+                      </li>
+                      <li className='part_list'>
+                        <input type="radio" name="part" id="verbt" value="vt" className='part_radio' checked={part==="vt"} onChange={handleRadio} /> <label htmlFor="verbt">타동사</label>
+                        <div className='checkd_bg'>
+                          <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
+                        </div>
+                      </li>
+                      <li className='part_list'>
+                        <input type="radio" name="part" id="adjective" value="a" className='part_radio' checked={part==="a"} onChange={handleRadio} /> <label htmlFor="adjective">형용사</label>
+                        <div className='checkd_bg'>
+                          <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
+                        </div>
+                      </li>
+                      <li className='part_list'>
+                        <input type="radio" name="part" id="adverb" value="ad" className='part_radio' checked={part==="ad"} onChange={handleRadio} /> <label htmlFor="adverb">부사</label>
+                        <div className='checkd_bg'>
+                          <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
+                        </div>
+                      </li>
+                      <li className='part_list'>
+                        <input type="radio" name="part" id="preposition" value="prep" className='part_radio' checked={part==="prep"} onChange={handleRadio} /> <label htmlFor="preposition">전치사</label>
+                        <div className='checkd_bg'>
+                          <img src={`${process.env.PUBLIC_URL}/images/check_icon01.svg`} className='check_icon01' alt="" />
+                        </div>
+                      </li>
+                    </ul>
+                </dd>
 
-
-              {/* 카드 형식 예문 터치 시 번역본 */}
-              <dd>
-                예문 <TextAreaAutoResize style={{
-                resize: "none",
-                outline: "none",
-                overflow: "hidden",
-                }} value={exam} onChange={handleExam} />
-                예문 뜻 <TextAreaAutoResize value={examMean} onChange={handleExamMean} />
-              </dd>
-            </dl>
-
-              <button type='button' onClick={handleSubmit} >
-                수정하기
-              </button>
-
-          </form>
+                <dd className='regis-mean'>
+                  <label htmlFor="regis-mean">뜻</label>
+                  <input type="text" value={mean} onChange={handleMean} id="regis-mean" />
+                </dd>
+              </dl>
 
 
+              <dl className='regis-exam_wrap'>
+                <dt>
+                  <label htmlFor="regis-exam">예문</label>
+                  <TextAreaAutoResize style={{
+                  resize: "none",
+                  outline: "none",
+                  overflow: "hidden",
+                  }} value={exam} onChange={handleExam}
+                  className='regis-txt_box' id="regis-exam"
+                  />
+                </dt>
 
-        </section>
+                <dd>
+                  <label htmlFor="regis-exam_mean">예문 뜻</label>
+                  <TextAreaAutoResize value={examMean} onChange={handleExamMean} className='regis-txt_box' id="rigis-exam_mean" />
+                </dd>
+              </dl>
+
+              <button type='button' onClick={handleSubmit} className='regis_submit_btn' >
+                  수정하기
+                </button>
+
+            </form>
 
 
+
+
+
+
+        </div>
       </div>
+
     </main>
   );
 }

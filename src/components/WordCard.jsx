@@ -1,13 +1,10 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
-function WordCard({id,num01,idx,word,mean,exam,examMean, part}) {
+function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleCheck}) {
 
-  // console.log(`idx : ${idx} num01 : ${num01} idx>num01 : ${idx>num01}`);
-
-  console.log(mean);
-
+  const navigate = useNavigate();
 
   const style = {
     margin : {
@@ -21,6 +18,21 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part}) {
     }
   }
 
+  let [chk, setChk] = useState(check);
+
+  // 체크 관리하는 함수
+  const handleChk = () => {
+    setChk((prev) => (!prev));
+    handleCheck(id, idx, chk);
+
+    // 페이지 유지시키기
+    navigate(`/main/${id}/${idx}`);
+  }
+
+  // useEffect(()=>{
+  //   setChk(check);
+  // },[check]);
+
   return (
     <>
       <article className='main-card' style={style.margin}>
@@ -28,36 +40,51 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part}) {
         <div className='card-header'>
           <span>
             {idx}
+          </span>
+
+          <div className='word-icon_box'>
+            <button className='check_img' onClick={handleChk}>
+              <img src={`${process.env.PUBLIC_URL}/images/check_icon_${check?`03`:`02`}.svg`} alt="" />
+            </button>
 
             <Link to={`/regis/${id}/${idx}`}>
               <img src={`${process.env.PUBLIC_URL}/images/pencil_light.svg`} alt="수정 아이콘 이미지" title='클릭 시 단어 수정' />
             </Link>
-          </span>
+          </div>
+
+
 
         </div>
 
-            <dl>
+            <dl className='card-word_wrap'>
 
             {/* 카드 형식 단어와 뜻과 품사 */}
-              <dt>
+              <dt className='card-word'>
                 <h3>{word}</h3>
               </dt>
 
               {/* 카드 형식 예문 터치 시 번역본 */}
-              <dd>
-                <p>{part&&<span className='part_icon'>{part}</span> } {mean}</p>
+              <dd className='card-mean'>
+                {part&&<span className='part_icon'>{part}</span> } <p>{mean}</p>
               </dd>
 
             </dl>
 
-            <dl>
-
-              {/* 단어 예문 */}
+            {exam ?
+            <dl className='card-exam_wrap'>
+            {/* 단어 예문 */}
               <dt>{exam}</dt>
 
-              {/* 단어 예문 뜻 */}
+            {/* 단어 예문 뜻 */}
               <dd>{examMean}</dd>
-            </dl>
+            </dl>  :
+            <dl className='card-exam_wrap null'>
+              <Link to={`/regis/${id}/${idx}`}>
+                <img src={`${process.env.PUBLIC_URL}/images/skin/03/null_char.png`} alt="" className='null_img' />
+              </Link>
+            </dl>}
+
+            
       </article>
     </>
   );

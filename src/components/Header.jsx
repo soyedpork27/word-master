@@ -3,10 +3,11 @@ import React, {useState} from 'react';
 import '../css/header.css';
 
 // import Link
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 function Header({data}) {
 
+  const navigation = useNavigate();
 
   let [toggle, setToggle] = useState(0);
 
@@ -16,11 +17,15 @@ function Header({data}) {
     }
   }
 
+  const goToPrev = () =>{
+    navigation(-1);
+  }
+
   return (
     <div className='header_wrap'>
       <header>
-        <div className='arrow_box'><img src={`${process.env.PUBLIC_URL}/images/arrow_light.svg`} alt="" /></div>
-        <h1 className='logo'><Link to={`/`}>Logo</Link></h1>
+        <div className='arrow_box' onClick={goToPrev} ><img src={`${process.env.PUBLIC_URL}/images/arrow_light.svg`} alt="뒤로가기 버튼" title='클릭 시 뒤로가기' /></div>
+        <h1 className='logo'><Link to={`/`}>홈</Link></h1>
         <div className='gnb_toggle_btn' onClick={()=>(setToggle(prev =>{
           if(prev===1){
             return 0;

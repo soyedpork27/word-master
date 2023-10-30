@@ -8,7 +8,7 @@ import WordCard from './WordCard';
 // import {useLocation} from 'react-router-dom';
 
 
-function Main({data}) {
+function Main({data, handleCheck}) {
 
 
   let {id, idx} = useParams();
@@ -19,7 +19,7 @@ function Main({data}) {
   
 
   // num01에 따라 나올 단어가 정해진다.
-  let [num01, setNum01] = useState(idx?idx:1);
+  let [num01, setNum01] = useState(idx?Number(idx):1);
 
 
   // 차시(id)가 바뀌면 데이터가 바뀌어야 한다.
@@ -27,11 +27,9 @@ function Main({data}) {
     setGetData(data[id-1]);
 
     // 차시(id)가 바뀌면 처음 단어로 돌아가야 한다.
-    setNum01(1)
-  },[id,data]);
-
-
-
+    // setNum01(idx?Number(idx):1)
+    setNum01(Number(idx));
+  },[id,data,idx]);
   
 
     // 우측 카드가 밀려 들어오는 함수
@@ -56,9 +54,7 @@ function Main({data}) {
         <div className='main-wrap'>
           <div className='main-box' >
 
-          {getData.list.map((item)=>(<WordCard key={item.idx} num01={num01} id={id} idx={item.idx} word={item.word} mean={item.mean} exam={item.exam} examMean={item.examMean} part={item.part} />))}
-
-
+          {getData.list.map((item)=>(<WordCard key={item.idx} num01={num01} id={id} idx={item.idx} word={item.word} mean={item.mean} exam={item.exam} examMean={item.examMean} part={item.part} check={item.check} handleCheck={handleCheck} />))}
           
           </div>
         </div>
@@ -70,7 +66,6 @@ function Main({data}) {
     </main>
   );
 }
-
 
 
 export default Main;

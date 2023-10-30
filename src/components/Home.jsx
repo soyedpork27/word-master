@@ -2,12 +2,14 @@ import React from 'react';
 
 import HomeCard from './HomeCard';
 
+import '../css/home.css';
+
 function Home({data}) {
 
 
   return (
     <div>
-      <main>
+      <main className='home-main'>
 
         {/* 차시 별 카드 */}
         {

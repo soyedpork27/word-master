@@ -16,7 +16,7 @@ function Body({data}) {
       <Header data={data} />
       <Outlet />
       <div className='App-bg'>
-        &nbsp;
+        <img src={`${process.env.PUBLIC_URL}/images/skin/03/main_char.png`} alt="" />
       </div>
     </div>
   );
