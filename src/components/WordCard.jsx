@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 
 import {Link, useNavigate} from 'react-router-dom';
 
@@ -55,8 +55,9 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleChec
 
 
         </div>
-
-            <dl className='card-word_wrap'>
+          {word&&mean?
+          <>
+          <dl className='card-word_wrap'>
 
             {/* 카드 형식 단어와 뜻과 품사 */}
               <dt className='card-word'>
@@ -83,7 +84,15 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleChec
                 <img src={`${process.env.PUBLIC_URL}/images/skin/03/null_char.png`} alt="" className='null_img' />
               </Link>
             </dl>}
-
+          </>
+          :
+          <dl className='card-word null'>
+            <dt >단어를 추가해 주세요.</dt>
+            <Link to={`/addWord/${id}/${idx}`}>
+              <img src={`${process.env.PUBLIC_URL}/images/plus.svg`} alt="plus 아이콘 이미지" title='클릭 시 단어 추가' className='plus_img' />
+            </Link>
+          </dl>
+          }
             
       </article>
     </>

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 function HomeCard({data}) {
 
-  const progress= (data.list.filter((item)=>(item.check===true)).length / data.list.length) * 100;
+  const progress = Math.floor((data.list.filter((item)=>(item.check===true)).length / data.list.length) * 100);
 
   const style={
     progress : {
@@ -26,7 +26,8 @@ function HomeCard({data}) {
           <h2>{data.id}차시</h2>
           <p>{data.list.length}/20</p>
 
-          <p>진행률 : {(data.list.filter((item)=>(item.check===true)).length / data.list.length) * 100}%</p>
+          <p>진행률 : {progress}%</p>
+          {/* <p>진행률 : {(data.list.filter((item)=>(item.check===true)).length / data.list.length) * 100}%</p> */}
 
           <div className='home-progress_bar'>
             <div className='progress' style={style.progress}>

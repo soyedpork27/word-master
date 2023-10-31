@@ -25,7 +25,7 @@ function Header({data}) {
     <div className='header_wrap'>
       <header>
         <div className='arrow_box' onClick={goToPrev} ><img src={`${process.env.PUBLIC_URL}/images/arrow_light.svg`} alt="뒤로가기 버튼" title='클릭 시 뒤로가기' /></div>
-        <h1 className='logo'><Link to={`/`}>홈</Link></h1>
+        <h1 className='logo'><Link to={`/`}><img src={`${process.env.PUBLIC_URL}/images/skin/01/home.png`} alt="메인 이미지" className='home_img' /></Link></h1>
         <div className='gnb_toggle_btn' onClick={()=>(setToggle(prev =>{
           if(prev===1){
             return 0;

@@ -41,7 +41,7 @@ main{
   height : 100%;
   border : 1px solid #000;
   transition : .5s;
-  background-color: rgba(255,255,255,.6);
+  background-color: rgba(255,255,255,.4);
   padding : 12px;
   border-radius: 16px;
   overflow : hidden;
@@ -189,4 +189,17 @@ main{
   background: none;
   border : none;
   cursor : pointer;
+}
+
+
+.card-word.null{
+  padding-top : 10% ;
+  /* position : relative; */
+}
+
+.plus_img{
+  position : absolute;
+  left : 50%;
+  top : 50%;
+  transform : translate(-50%, -50%);
 }
