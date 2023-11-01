@@ -12,7 +12,7 @@ function Header({data, deleteDay}) {
   const {skin, updateSkin} = useContext(SkinContext);
 
   // 스킨 정보에 따라 배열의 값을 사용하기 위해 변수 선언
-  const bgCol = [`#F8AAFF`, `#fff`, `#FFCED2`, `#FFE093`];
+  const bgCol = [`#F8AAFF`, `#fff`, `#FFADB7`, `#FFE093`];
 
   // context 로 받아온 skin 을 스테이트로 관리
   const [selectedSkin , setSelectedSkin] = useState(skin);
@@ -112,6 +112,14 @@ function Header({data, deleteDay}) {
                   <label htmlFor="skin-03" className='skin_label'>
                     Loopy
                     <div className='skin_selected'><img src={`${process.env.PUBLIC_URL}/images/skin/03/select.png`} alt="" /></div>
+                  </label>
+                </li>
+
+                <li className='skmod_li'>
+                <input type="radio" id="skin-04" className='skin_chk' name="skin_chk" checked={selectedSkin===4} onChange={()=>setSelectedSkin(4)}/>
+                  <label htmlFor="skin-04" className='skin_label'>
+                    Maru
+                    <div className='skin_selected'><img src={`${process.env.PUBLIC_URL}/images/skin/04/select.png`} alt="" /></div>
                   </label>
                 </li>
 
