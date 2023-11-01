@@ -12,7 +12,7 @@ function Header({data, deleteDay}) {
   const {skin, updateSkin} = useContext(SkinContext);
 
   // 스킨 정보에 따라 배열의 값을 사용하기 위해 변수 선언
-  const bgCol = [`#F8AAFF`, `#fff`, `#FFADB7`, `#FFE093`];
+  const bgCol = [`#F8AAFF`, `#fff`, `#FFADB7`, `#FECC54`];
 
   // context 로 받아온 skin 을 스테이트로 관리
   const [selectedSkin , setSelectedSkin] = useState(skin);

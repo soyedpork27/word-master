@@ -1,6 +1,7 @@
 
 .header_wrap{
   position : relative;
+  width : 100%;
   z-index: 9999;
 }
 
@@ -85,8 +86,10 @@ header{
 
 .skin_modal_wrap{
   width : 100%;
+  max-width : 500px;
   position : fixed;
-  left : 0;
+  left : 50%;
+  transform : translateX(-50%);
   top : 50px;
   height : calc(100vh - 50px);
   padding : 16px;

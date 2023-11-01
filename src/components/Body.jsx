@@ -13,7 +13,8 @@ function Body({data, deleteDay}) {
 
   const {skin} = useContext(SkinContext);
 
-  const bgCol = [`#F8AAFF`, `#fff`, `#FFADB7`, `#FFE093`];
+  const bgCol = [`#F8AAFF`, `#fff`, `#FFADB7`, `#FECC54`];
+
 
   const style={
     background : {
