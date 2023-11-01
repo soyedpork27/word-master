@@ -96,7 +96,7 @@ function Regis({words, handleWords}) {
                 <dt className='regis-word'>
                   {/* <h3> */}
                     <label htmlFor="regis-word">단어</label>
-                    <input type='text' value={word} onChange={handleWord} id='regis-word' />
+                    <input type='text' autoComplete='new-password' value={word} onChange={handleWord} id='regis-word' />
                   {/* </h3> */}
                 </dt>
 

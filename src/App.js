@@ -10,6 +10,10 @@ import Main from './components/Main';
 import Home from './components/Home';
 import AddWord from './components/AddWord';
 
+
+import { SkinProvider } from './context/SkinContext';
+
+
 // router-dom import
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
@@ -18,7 +22,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 function App() {
 
   let [words, setWords] = useImmer(initialData);
-
 
   console.log(words);
 
@@ -55,6 +58,7 @@ function App() {
     }
   }
 
+  // 단어 체크 시 프로퍼티 바꾸는 함수
   const handleCheck = (id, idx, chk) => {
 
     setWords((prev)=>{
@@ -62,16 +66,53 @@ function App() {
     });
   }
 
+  // 차시를 추가하는 함수
+  const addDay = (id) => {
+
+    const obj = {
+      id,
+      list : [
+        {
+          idx : 1,
+          word : undefined,
+          part : "",
+          mean : undefined,
+          exam : "",
+          examMean : "",
+          check : false
+        },
+
+      ]
+    }
+
+    setWords((prev) => {
+      prev.splice(id, 0, {...obj})
+    });
+  }
+
+  const deleteDay = (id) => {
+
+    setWords((prev) => {
+      prev.splice(id-1, 1);
+      prev.forEach((item)=>{
+        if(item.id > id){
+          item.id = item.id-1;
+        }
+      });
+    })
+
+  }
+
   const client = new QueryClient();
 
   const router =  createBrowserRouter([
     {
       path : '/',
-      element : <Body data={words} />,
+      element : <Body data={words} deleteDay={deleteDay} />,
       children : [
         {
           index : true,
-          element : <Home data={words} />
+          element : <Home data={words} addDay={addDay} />
         },
         {
           path : '/main/:id/:idx',
@@ -92,9 +133,10 @@ function App() {
   return (
 
     <QueryClientProvider client={client}>
-
-      <RouterProvider router={router} />
-      
+      {/* 스킨 프로바이더로 겹침 */}
+      <SkinProvider>
+        <RouterProvider router={router} />
+      </SkinProvider>      
     </QueryClientProvider>
     // <div className="App">
     //   <Body />
@@ -138,234 +180,17 @@ const initialData=[
       },
       {
         idx : 4,
-        word : "night",
-        part : "n",
-        mean : "밤",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 5,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 6,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 7,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 8,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 9,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 10,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 11,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 12,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 13,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 14,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 15,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 16,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 17,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 18,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
-        check : true
-      },
-      {
-        idx : 19,
         word : "",
         part : "",
         mean : "",
         exam : "",
         examMean : "",
-        check : true
+        check : false
       }
     ]
   },
   {
     id : 2,
-    list : [
-      {
-        idx : 1,
-        word : "MacBook",
-        part : "n",
-        mean : "맥북",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 2,
-        word : "iPad",
-        part : "n",
-        mean : "아이패드",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 3,
-        word : "iPhone",
-        part : "n",
-        mean : "아이폰",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 4,
-        word : "",
-        part : "",
-        mean : "",
-        exam : "",
-        examMean : "",
-        check : false
-      }
-    ]
-  },
-  {
-    id : 3,
-    list : [
-      {
-        idx : 1,
-        word : "MacBook",
-        part : "n",
-        mean : "맥북",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 2,
-        word : "iPad",
-        part : "n",
-        mean : "아이패드",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 3,
-        word : "iPhone",
-        part : "n",
-        mean : "아이폰",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 4,
-        word : "",
-        part : "",
-        mean : "",
-        exam : "",
-        examMean : "",
-        check : false
-      }
-    ]
-  },
-  {
-    id : 4,
     list : [
       {
         idx : 1,

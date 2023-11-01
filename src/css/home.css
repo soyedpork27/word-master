@@ -53,3 +53,31 @@
   transform : translateX(-50%);
   bottom : 100%;
 }
+
+.home-card.add{
+  position : relative;
+  border : dashed 4px #eee;
+  cursor : pointer;
+}
+
+.home-card.add .add_p {
+  /* color :#eee; */
+  font-size : 18px;
+  position : absolute;
+  left : 0;
+  top : 8px;
+  width : 100%;
+  text-align : center;
+}
+
+.add-day{
+  width : 40%;
+  position : absolute;
+  left : 50%;
+  top : 50%;
+  transform : translate(-50%, -50%);
+}
+
+.null_progress{
+  height : 42px;
+}

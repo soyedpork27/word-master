@@ -60,18 +60,145 @@ header{
   height : calc(100vh - 50px);
   /* left : 100%; */
   top : 50px;
-  background-color: #ccc;
-  border : 2px solid #767676;
+  /* background-color: #ccc; */
+  border : 2px solid #000;
   box-sizing: border-box;
   transition: .3s;
+  text-align: center;;
 }
 
 .gnb{
 
 }
 
+.one_depth{
+  position : relative;
+}
+
 .gnb_link {
   display : block;
   height : 40px;
   line-height : 40px;
+  position : relative;
+}
+
+
+.skin_modal_wrap{
+  width : 100%;
+  position : fixed;
+  left : 0;
+  top : 50px;
+  height : calc(100vh - 50px);
+  padding : 16px;
+  box-sizing: border-box;
+  z-index : 9999;
+}
+
+.skin_modal{
+  width : 100%;
+  height : 100%;
+  background-color: rgba(0,0,0,.8);
+  border-radius : 8px;
+  padding : 12px;
+  box-sizing: border-box;
+  text-align : center;
+}
+
+.skmod_title{
+  font-size : 24px;
+  font-weight : bold;
+  text-align : center;
+  padding-bottom : 12px;
+  color : #fff;
+}
+
+.skmod_ul{
+  display : flex;
+  gap : 10px;
+  flex-wrap : wrap;
+}
+
+.skmod_li{
+  width : calc( (100% - 20px) / 3 );
+  aspect-ratio : 1 / 1;
+  /* background-color : rgba(255,255,255,.5); */
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  position : relative;
+}
+
+.skin_chk{
+  display : none;
+}
+
+.skmod_li label{
+  display : flex;
+  width : 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  /* color : #fff; */
+  font-size : 20px;
+  font-weight : bold;
+  background-color: #fff;
+  z-index : 1
+}
+
+.skin_selected {
+  display : none;
+}
+
+.skin_chk:checked ~ label > div.skin_selected {
+  display : block;
+  width : 100%;
+  height : 100%;
+  position : absolute;
+  left : 0;
+  top : 0;
+  background-color: rgba(255, 171, 171, 0.3);
+  z-index : 2;
+}
+
+.skin_selected img {
+  width : 50%;
+  position : absolute;
+  left : 50%;
+  top : 50%;
+  transform : translate(-50%, -50%);
+  opacity : .9;
+}
+
+
+
+.skin-reset_btn{
+  width : 80%;
+  background : none;
+  border : none;
+  background-color : rgba(255,255,255,.9);
+  border-radius: 8px;
+  font-size : 18px;
+  padding : 8px 0;
+  /* margin-top : 16px; */
+  margin : 16px auto 0 auto;
+}
+
+.day_delete_img{
+  background : none;
+  border : none;
+  width : 40px;
+  height : 40px;
+  position : absolute;
+  right : 0;
+  top : 0;
+  padding : 10px;
+  box-sizing: border-box;
+  z-index : 9999;
+}
+
+.day_delete_img img {
+  width : 20px;
+  height : 20px;
+  display : block;
 }

@@ -12,7 +12,8 @@ main{
   text-align : center;
   font-size : 18px;
   line-height: 1;
-  margin : 10px;
+  /* margin : 10px; */
+  padding : 10px;
 }
 
 .main-wrap{
@@ -106,9 +107,9 @@ main{
 }
 
 .card-word_wrap{
-  background-color: rgba(255,255,255,.3);
   width : calc(100% - 20px);
-  aspect-ratio : 1 / .7;
+  /* aspect-ratio : 1 / .7; */
+  height : calc((100% - 62px) / 2);
   padding : 10px;
   border-radius : 16px;
   display : flex;
@@ -116,6 +117,10 @@ main{
   gap : 32px;
   justify-content : center;
   flex-wrap : wrap;
+}
+
+.card-exam_wrap, .card-word_wrap{
+  background-color: rgba(255,255,255,.4);
 }
 
 .card-word {
@@ -138,9 +143,9 @@ main{
 }
 
 .card-exam_wrap{
-  background-color: rgba(255,255,255,.3);
   width : calc(100% - 20px);
-  aspect-ratio : 1 / .7;
+  /* aspect-ratio : 1 / .7; */
+  height : calc((100% - 62px) / 2);
   margin-top : 20px;
   padding : 10px;
   border-radius : 16px;

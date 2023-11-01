@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 
 import {Link, useNavigate} from 'react-router-dom';
+import { SkinContext } from '../context/SkinContext';
 
 function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleCheck}) {
+
+  const {skin} = useContext(SkinContext);
 
   const navigate = useNavigate();
 
@@ -42,7 +45,10 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleChec
             {idx}
           </span>
 
-          <div className='word-icon_box'>
+          {
+            word ?
+            <>
+            <div className='word-icon_box'>
             <button className='check_img' onClick={handleChk}>
               <img src={`${process.env.PUBLIC_URL}/images/check_icon_${check?`03`:`02`}.svg`} alt="" />
             </button>
@@ -51,6 +57,12 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleChec
               <img src={`${process.env.PUBLIC_URL}/images/pencil_light.svg`} alt="수정 아이콘 이미지" title='클릭 시 단어 수정' />
             </Link>
           </div>
+            </>
+            :
+            <>
+            </>
+          }
+          
 
 
 
@@ -69,7 +81,7 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleChec
                 {part&&<span className='part_icon'>{part}</span> } <p>{mean}</p>
               </dd>
 
-            </dl>
+          </dl>
 
             {exam ?
             <dl className='card-exam_wrap'>
@@ -81,7 +93,7 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleChec
             </dl>  :
             <dl className='card-exam_wrap null'>
               <Link to={`/regis/${id}/${idx}`}>
-                <img src={`${process.env.PUBLIC_URL}/images/skin/03/null_char.png`} alt="" className='null_img' />
+                <img src={`${process.env.PUBLIC_URL}/images/skin/0${skin}/null_char.png`} alt="" className='null_img' />
               </Link>
             </dl>}
           </>

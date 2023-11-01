@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from './Header';
 
 import '../css/common.css';
@@ -6,27 +6,33 @@ import '../css/common.css';
 // import Outlet
 import {Outlet} from 'react-router-dom';
 
-
-function Body({data}) {
-
+import { SkinContext } from '../context/SkinContext';
 
 
-  const bgCol = `#F8AAFF`;
+function Body({data, deleteDay}) {
+
+  const {skin} = useContext(SkinContext);
+
+  const bgCol = [`#F8AAFF`, `#fff`, `#FFCED2`, `#FFFDC5`];
 
   const style={
     background : {
-      backgroundColor : `${bgCol}`
+      backgroundColor : `${bgCol[skin-1]}`
     }
   }
 
   return (
-    <div className='App-wrap'>
-      <Header data={data} />
-      <Outlet />
-      <div className='App-bg' style={style.background}>
-        <img src={`${process.env.PUBLIC_URL}/images/skin/01/main_char.png`} alt="" />
-      </div>
-    </div>
+
+
+        <div className='App-wrap'>
+          <Header data={data} deleteDay={deleteDay} />
+          <Outlet />
+          <div className='App-bg' style={style.background}>
+            <img src={`${process.env.PUBLIC_URL}/images/skin/0${skin}/main_char.png`} alt="" />
+          </div>
+        </div>
+
+
   );
 }
 
