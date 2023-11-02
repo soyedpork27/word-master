@@ -9,9 +9,11 @@ function HomeCard({data}) {
 
   const progress = Math.floor((data.list.filter((item)=>(item.check===true)).length / data.list.filter((item)=>(item.word)).length) * 100);
 
+  
+
   const style={
     progress : {
-      width : `${(data.list.filter((item)=>(item.check===true)).length / data.list.filter((item)=>(item.word)).length) * 100}%`
+      width : (data.list.length===1)?`0%`:`${(data.list.filter((item)=>(item.check===true)).length / data.list.filter((item)=>(item.word)).length) * 100}%`
     },
     progressImg : {
       // width : `${progress!==0?`32px`:`0px`}`
@@ -40,11 +42,11 @@ function HomeCard({data}) {
               {progress < 100 || !progress ?
               <>
                 {/* 진행중인 경우 */}
-                <img src={`${process.env.PUBLIC_URL}/images/skin/0${skin}/progress.png`} alt="" className='progress_img' style={style.progressImg} />
+                <img src={`${process.env.PUBLIC_URL}/images/skin/${skin.skinId}/progress.png`} alt="" className='progress_img' style={style.progressImg} />
               </>:
               <>
                 {/* 완료 한 경우 */}
-                <img src={`${process.env.PUBLIC_URL}/images/skin/0${skin}/done.png`} alt="" className='progress_img' style={style.progressImg} />
+                <img src={`${process.env.PUBLIC_URL}/images/skin/${skin.skinId}/done.png`} alt="" className='progress_img' style={style.progressImg} />
               </>}
               
             </div>

@@ -9,13 +9,12 @@ import { SkinContext } from '../context/SkinContext';
 function Header({data, deleteDay}) {
 
   // useContext 에서 skin 정보를 받아옴
-  const {skin, updateSkin} = useContext(SkinContext);
+  const {skin, skinChar, updateSkin} = useContext(SkinContext);
 
-  // 스킨 정보에 따라 배열의 값을 사용하기 위해 변수 선언
-  const bgCol = [`#F8AAFF`, `#fff`, `#FFADB7`, `#FECC54`];
+  
 
   // context 로 받아온 skin 을 스테이트로 관리
-  const [selectedSkin , setSelectedSkin] = useState(skin);
+  const [selectedSkin , setSelectedSkin] = useState(skin.skinId);
 
   // 화면 이동을 위해 useNavigate 사용
   const navigation = useNavigate();
@@ -28,8 +27,12 @@ function Header({data, deleteDay}) {
   let style = {
     gnb : {
       left : toggle===1?`calc(100% - 260px)`:`100%`,
-      backgroundColor : `${bgCol[skin-1]}`
-    }
+      backgroundColor : `${skin.skinCol}`
+    },
+    // skinBg :{
+    //   backgroundColor : `${skinChar.skinCol}`,
+    //   // opacity : .5
+    // }
   }
 
   // 뒤로가기 버튼 클릭 시 이전 화면으로 이동
@@ -62,7 +65,7 @@ function Header({data, deleteDay}) {
     <div className='header_wrap'>
       <header>
         <div className='arrow_box' onClick={goToPrev} ><img src={`${process.env.PUBLIC_URL}/images/arrow_light.svg`} alt="뒤로가기 버튼" title='클릭 시 뒤로가기' /></div>
-        <h1 className='logo'><Link to={`/`}><img src={`${process.env.PUBLIC_URL}/images/skin/0${skin}/home.png`} alt="메인 이미지" className='home_img' /></Link></h1>
+        <h1 className='logo'><Link to={`/`}><img src={`${process.env.PUBLIC_URL}/images/skin/${skin.skinId}/home.png`} alt="메인 이미지" className='home_img' /></Link></h1>
         <div className='gnb_toggle_btn' onClick={()=>(setToggle(prev =>{
           if(prev===1){
             return 0;
@@ -99,29 +102,37 @@ function Header({data, deleteDay}) {
 
               <ul className='skmod_ul'>
 
-                <li className='skmod_li'>
+                {skinChar.map((item)=>(<li key={item.skinId} className='skmod_li'>
+                  <input type="radio" id={`skin-${item.skinId}`} className='skin_chk' name="skin_chk" checked={selectedSkin===item.skinId} onChange={()=>setSelectedSkin(item.skinId)}/>
+                  <label htmlFor={`skin-${item.skinId}`} className='skin_label'>
+                    {item.skinName}
+                    <div className='skin_selected' style={{backgroundColor : `${item.skinCol}`}}><img src={`${process.env.PUBLIC_URL}/images/skin/${item.skinId}/select.png`} alt="" /></div>
+                  </label>
+                </li>))}
+
+                {/* <li className='skmod_li'>
                   <input type="radio" id="skin-01" className='skin_chk' name="skin_chk" checked={selectedSkin===1} onChange={()=>setSelectedSkin(1)}/>
                   <label htmlFor="skin-01" className='skin_label'>
                     Kuromi
-                    <div className='skin_selected'><img src={`${process.env.PUBLIC_URL}/images/skin/01/select.png`} alt="" /></div>
+                    <div className='skin_selected'><img src={`${process.env.PUBLIC_URL}/images/skin/${skin.skinId}/select.png`} alt="" /></div>
                   </label>
-                </li>
+                </li> */}
 
-                <li className='skmod_li'>
+                {/* <li className='skmod_li'>
                 <input type="radio" id="skin-03" className='skin_chk' name="skin_chk" checked={selectedSkin===3} onChange={()=>setSelectedSkin(3)}/>
                   <label htmlFor="skin-03" className='skin_label'>
                     Loopy
                     <div className='skin_selected'><img src={`${process.env.PUBLIC_URL}/images/skin/03/select.png`} alt="" /></div>
                   </label>
-                </li>
+                </li> */}
 
-                <li className='skmod_li'>
+                {/* <li className='skmod_li'>
                 <input type="radio" id="skin-04" className='skin_chk' name="skin_chk" checked={selectedSkin===4} onChange={()=>setSelectedSkin(4)}/>
                   <label htmlFor="skin-04" className='skin_label'>
                     Maru
                     <div className='skin_selected'><img src={`${process.env.PUBLIC_URL}/images/skin/04/select.png`} alt="" /></div>
                   </label>
-                </li>
+                </li> */}
 
               </ul>
 

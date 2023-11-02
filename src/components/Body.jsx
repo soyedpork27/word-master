@@ -13,12 +13,12 @@ function Body({data, deleteDay}) {
 
   const {skin} = useContext(SkinContext);
 
-  const bgCol = [`#F8AAFF`, `#fff`, `#FFADB7`, `#FECC54`];
+  
 
 
   const style={
     background : {
-      backgroundColor : `${bgCol[skin-1]}`
+      backgroundColor : `${skin.skinCol}`
     }
   }
 
@@ -29,7 +29,7 @@ function Body({data, deleteDay}) {
           <Header data={data} deleteDay={deleteDay} />
           <Outlet />
           <div className='App-bg' style={style.background}>
-            <img src={`${process.env.PUBLIC_URL}/images/skin/0${skin}/main_char.png`} alt="" />
+            <img src={`${process.env.PUBLIC_URL}/images/skin/${skin.skinId}/main_char.png`} alt="" />
           </div>
         </div>
 

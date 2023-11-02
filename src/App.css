@@ -6,8 +6,22 @@
   font-style: normal;
 }
 
+input, textarea, button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+
+
 *, a {
   font-family: 'BMJUA';
+}
+
+button {
+  color : #000;
 }
 
 #root{

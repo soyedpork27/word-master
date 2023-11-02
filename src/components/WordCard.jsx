@@ -93,7 +93,7 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleChec
             </dl>  :
             <dl className='card-exam_wrap null'>
               <Link to={`/regis/${id}/${idx}`}>
-                <img src={`${process.env.PUBLIC_URL}/images/skin/0${skin}/null_char.png`} alt="" className='null_img' />
+                <img src={`${process.env.PUBLIC_URL}/images/skin/${skin.skinId}/null_char.png`} alt="" className='null_img' />
               </Link>
             </dl>}
           </>
