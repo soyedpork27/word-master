@@ -1,8 +1,7 @@
-import { createContext , useState } from "react";
+import { createContext , useState, useEffect } from "react";
 
 
 export const SkinContext = createContext();
-
 
 
 // 스킨 프로바이더에 skin이 있다.
@@ -44,7 +43,20 @@ export function SkinProvider ({children}) {
     }
   ]
 
-  const [skin, setSkin] = useState(skinChar[0]);
+  // 선택한 스킨을 로컬 스토리지에서 받아와 스테이트로 관리
+  const [skin, setSkin] = useState(()=>skinFromLocalStorage());
+
+
+  // 선택한 스킨을 로컬 스토리지에 저장
+  useEffect(()=>{
+    localStorage.setItem('word-skin', JSON.stringify(skin))
+  },[skin]);
+
+  // 스킨을 로컬 스토리지에서 가져오는 함수
+function skinFromLocalStorage() {
+  const skin = localStorage.getItem('word-skin');
+  return skin?JSON.parse(skin):skinChar[0];
+}
 
   const updateSkin = (wanted) => {
     // if(wanted === 1) {
@@ -68,3 +80,5 @@ export function SkinProvider ({children}) {
 
   return (<SkinContext.Provider value={{skin, skinChar, updateSkin}} >{children}</SkinContext.Provider>);
 }
+
+

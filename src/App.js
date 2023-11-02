@@ -23,14 +23,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
 
+  // 로컬스토리지에서 불러온 데이터를 스테이트로 관리한다.
   let [words, setWords] = useImmer(()=>wordsFromLocalStorage());
 
 
   // 로컬스토리지에 단어를 저장하기
   useEffect(()=>{
+    // 로컬스토리지에 특정 키에 객체를 직렬화 하여 저장
     localStorage.setItem("word-master", JSON.stringify(words))
-
-
   }, [words])
 
   // 수정된 객체를 받아 핸들링
@@ -199,9 +199,13 @@ const initialData=[
   }
 ];
 
+// 로컬 스토리지에서 데이터를 불러오는 함수
 function wordsFromLocalStorage(){
+
+  // 키에 대응되는 데이터를 변수에 할당
   const words = localStorage.getItem("word-master");
 
+  // 키에서 데이터를 가져왔다면 파싱하고 그렇지 않다면 다른 배열을 할당
   return  words ? JSON.parse(words) : initialData;
 
 }
