@@ -176,24 +176,6 @@ const initialData=[
         exam : "",
         examMean : "",
         check : false
-      },
-      {
-        idx : 3,
-        word : "",
-        part : "",
-        mean : "",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 4,
-        word : "",
-        part : "",
-        mean : "",
-        exam : "",
-        examMean : "",
-        check : false
       }
     ]
   }

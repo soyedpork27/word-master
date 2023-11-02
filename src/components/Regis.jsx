@@ -19,6 +19,7 @@ function Regis({words, handleWords}) {
   // console.log(idx);
   // console.log(typeof idx);
 
+  // 단어 상태관리
   let [word, setWord] = useState(words[id-1]["list"][idx-1]["word"]);
 
   let [mean, setMean] = useState(words[id-1]["list"][idx-1]["mean"]);
@@ -60,6 +61,11 @@ function Regis({words, handleWords}) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // const gggg = words.filter((item)=>(item.list.filter((itm)=>(itm.word===word))));
+
+    // console.log(gggg);
+    // console.log(gggg&&gggg.length);
+
     const obj01 = {
         idx : Number(idx),
         word : word,
@@ -96,7 +102,7 @@ function Regis({words, handleWords}) {
                 <dt className='regis-word'>
                   {/* <h3> */}
                     <label htmlFor="regis-word">단어</label>
-                    <input type='text' autoComplete='new-password' value={word} onChange={handleWord} id='regis-word' />
+                    <input type='text' autoComplete='new-password' value={word} onChange={handleWord} id='regis-word'  />
                   {/* </h3> */}
                 </dt>
 
