@@ -3,10 +3,15 @@ import React, {useContext, useState} from 'react';
 import '../css/header.css';
 
 // import Link
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import { SkinContext } from '../context/SkinContext';
 
 function Header({data, deleteDay}) {
+
+  // 접속된 차시를 삭제할 때 생기는 버그를 고치기 위해 params 값을 받아옴
+  let {id} = useParams();
+
+  console.log(`id 는 ${id}`);
 
   // useContext 에서 skin 정보를 받아옴
   const {skin, skinChar, updateSkin} = useContext(SkinContext);
@@ -50,8 +55,15 @@ function Header({data, deleteDay}) {
   }
 
   // 버튼 클릭 시 토글 유지 후 차시 삭제 아이콘 뜨기
-  const handleDay = (id) => {
-    deleteDay(id);
+  const handleDay = (dayId) => {
+    
+    if(Number(id)===Number(dayId)){
+      // 접속된 차시를 삭제하지 못하도록 경고 메시지 출력
+      alert(`선택된 차시는 삭제할 수 없습니다.\n홈에서 ${dayId}차시를 삭제해주세요.`);
+      return;
+    }else{
+      deleteDay(dayId);
+    }
   }
 
   // skin submit 이벤트
