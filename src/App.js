@@ -2,6 +2,8 @@ import './App.css';
 
 import './css/reset.css';
 
+import {useEffect} from 'react';
+
 import {useImmer} from 'use-immer';
 
 import Body from './components/Body';
@@ -21,9 +23,15 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
 
-  let [words, setWords] = useImmer(initialData);
+  let [words, setWords] = useImmer(()=>wordsFromLocalStorage());
 
-  console.log(words);
+
+  // 로컬스토리지에 단어를 저장하기
+  useEffect(()=>{
+    localStorage.setItem("word-master", JSON.stringify(words))
+
+
+  }, [words])
 
   // 수정된 객체를 받아 핸들링
   const handleWords = (id ,idx,obj) => {
@@ -153,68 +161,27 @@ const initialData=[
     list : [
       {
         idx : 1,
-        word : "As",
-        part : "prep",
-        mean : "~처럼, ~때문에, ~만큼",
-        exam : "As you wish",
-        examMean : "당신이 바라는 대로",
+        word : "example",
+        part : "n",
+        mean : "예시",
+        exam : "This is an example sentence",
+        examMean : "이 문장은 예시 문장입니다.",
         check : true
       },
       {
         idx : 2,
-        word : "cake",
-        part : "n",
-        mean : "케이크",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 3,
-        word : "coffee",
-        part : "n",
-        mean : "커피",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 4,
         word : "",
         part : "",
         mean : "",
         exam : "",
         examMean : "",
         check : false
-      }
-    ]
-  },
-  {
-    id : 2,
-    list : [
-      {
-        idx : 1,
-        word : "MacBook",
-        part : "n",
-        mean : "맥북",
-        exam : "",
-        examMean : "",
-        check : false
-      },
-      {
-        idx : 2,
-        word : "iPad",
-        part : "n",
-        mean : "아이패드",
-        exam : "",
-        examMean : "",
-        check : false
       },
       {
         idx : 3,
-        word : "iPhone",
-        part : "n",
-        mean : "아이폰",
+        word : "",
+        part : "",
+        mean : "",
         exam : "",
         examMean : "",
         check : false
@@ -231,5 +198,12 @@ const initialData=[
     ]
   }
 ];
+
+function wordsFromLocalStorage(){
+  const words = localStorage.getItem("word-master");
+
+  return  words ? JSON.parse(words) : initialData;
+
+}
 
 export default App;
