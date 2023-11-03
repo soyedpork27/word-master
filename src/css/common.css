@@ -4,3 +4,14 @@
   padding-top : 50px;
 }
 
+.notfound_div{
+  font-family : "BMJUA";
+  margin-top : 50px;
+  text-align : center;
+  font-size : 20px;
+
+}
+
+.notfound_div a{
+  color : #00f;
+}

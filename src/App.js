@@ -11,6 +11,7 @@ import Regis from './components/Regis';
 import Main from './components/Main';
 import Home from './components/Home';
 import AddWord from './components/AddWord';
+import NotFound from './components/NotFound';
 
 
 import { SkinProvider } from './context/SkinContext';
@@ -117,6 +118,7 @@ function App() {
     {
       path : '/',
       element : <Body data={words} deleteDay={deleteDay} />,
+      errorElement : <NotFound data={words} deleteDay={deleteDay} />,
       children : [
         {
           index : true,
