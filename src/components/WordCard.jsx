@@ -32,9 +32,7 @@ function WordCard({id,num01,idx,word,mean,exam,examMean, part, check, handleChec
     navigate(`/main/${id}/${idx}`);
   }
 
-  // useEffect(()=>{
-  //   setChk(check);
-  // },[check]);
+  
 
   return (
     <>
