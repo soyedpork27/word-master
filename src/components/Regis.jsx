@@ -61,10 +61,24 @@ function Regis({words, handleWords}) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const gggg = words.filter((item)=>(item.list.filter((itm)=>(itm.word===word))));
+    // let isExist = [];
 
-    // console.log(gggg);
-    // console.log(gggg&&gggg.length);
+    // console.log(`단어는 ${word}`);
+
+    // words.forEach((item)=>{
+
+    //   const exist = item.list.filter(itm => (itm.word===word));
+
+    //   if((exist.length > 1)){
+    //     exist.forEach((item)=>{
+    //       isExist.push(item);
+    //     });
+    //   }
+    // });
+
+    // console.log(isExist);
+    // console.log(isExist.length > 1&&`존재`);
+
 
     const obj01 = {
         idx : Number(idx),
